@@ -1,0 +1,53 @@
+<section class="section" id="catalogo" aria-labelledby="catalogo-title">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 id="catalogo-title">Catálogo</h2>
+        <p>Faroles, apliques, tortugas, colgantes y globos de fabricación propia, más la línea importada de NIBA.</p>
+      </div>
+    </div>
+
+    <!-- Tienda en Mercado Libre -->
+    <div class="ml-band">
+      <div class="ml-brand">
+        <img class="ml-logo" src="assets/img/mercado-libre.svg" alt="Mercado Libre" width="62" height="66">
+      </div>
+      <div class="ml-copy">
+        <h3>Comprá directo de fábrica en Mercado Libre</h3>
+        <p class="ml-user">Vendedor: {{ ml.seller }}</p>
+        <p>Todo el catálogo Fuinyter con precio y stock actualizados y envío a todo el país. Pagás con Mercado Pago y tu compra queda cubierta por Compra Protegida.</p>
+        <a class="ml-all" [href]="ml.listings" target="_blank" rel="noopener">Ver todas las publicaciones</a>
+      </div>
+      <a class="btn btn-ink ml-cta" [href]="ml.profile" target="_blank" rel="noopener">
+        Ver perfil en Mercado Libre <svg><use href="#arrow" /></svg>
+      </a>
+    </div>
+
+    <!-- Familias de producto -->
+    <div class="catalog-grid">
+      @for (tile of tiles; track tile.title) {
+        <a class="tile" [class]="tile.layout" [class.tile-dark]="!tile.cutout" [href]="tile.href" target="_blank" rel="noopener">
+          <div class="tile-media" [class.contain]="tile.cutout">
+            <img [src]="tile.image" [alt]="tile.alt" loading="lazy">
+          </div>
+          <div class="tile-body">
+            <h3>{{ tile.title }}</h3>
+            <p>{{ tile.text }}</p>
+            @if (tile.swatches) {
+              <div class="swatches" aria-label="Colores disponibles: verde, petróleo, arena, marrón y negro">
+                @for (c of tile.swatches; track c) { <span [style.background]="c"></span> }
+              </div>
+            } @else {
+              <span class="go">Ver modelos <svg><use href="#arrow" /></svg></span>
+            }
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="catalog-foot">
+      <p>Descargá nuestro catálogo en PDF.</p>
+      <a class="btn btn-ink" [href]="pdf" download>Descargar catálogo en PDF</a>
+    </div>
+  </div>
+</section>

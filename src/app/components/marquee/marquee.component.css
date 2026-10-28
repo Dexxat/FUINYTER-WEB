@@ -1,0 +1,17 @@
+.lines-strip { border-block: 1px solid var(--line); overflow: hidden; background: var(--paper-2); }
+.lines-track { display: flex; width: max-content; animation: slide 45s linear infinite; }
+.lines-strip:hover .lines-track { animation-play-state: paused; }
+.lines-group { display: flex; align-items: center; }
+.lines-group span {
+  font-variation-settings: "wdth" 115; font-weight: 400;
+  font-size: .9rem; line-height: 1; letter-spacing: .01em;
+  padding: .8rem 0; white-space: nowrap;
+}
+.lines-group .hours { font-weight: 600; }
+.lines-group i { /* separador: un pequeño foco */
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--lumen); box-shadow: 0 0 0 3px rgba(243,198,107,.25);
+  margin: 0 1.75rem;
+}
+@keyframes slide { to { transform: translate3d(-50%, 0, 0); } }
+@media (prefers-reduced-motion: reduce) { .lines-track { animation: none; } }

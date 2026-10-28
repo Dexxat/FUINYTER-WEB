@@ -1,0 +1,70 @@
+.hero { position: relative; overflow-x: clip; padding: clamp(3rem, 7vw, 6rem) 0 clamp(3rem, 6vw, 5rem); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+
+/* Círculo del logo: un foco que se enciende al cargar */
+.lamp {
+  position: relative; aspect-ratio: 1; width: 100%; max-width: 520px; justify-self: center;
+  border-radius: 50%; overflow: hidden;
+  background: var(--paper-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.lamp::before { /* textura de hormigón */
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.3 0 0 0 0 0.3 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.lamp::after { /* haz de luz */
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(ellipse 48% 62% at 50% 50%, var(--lumen-soft) 0%, rgba(243,198,107,.55) 38%, rgba(243,198,107,0) 72%);
+  opacity: 0;
+  animation: light-on 2.4s var(--ease) .5s forwards;
+}
+.lamp-mark { position: absolute; inset: 0; display: grid; place-items: center; z-index: 2; }
+.lamp-mark svg { width: 60%; height: auto; aspect-ratio: 1; color: #1D2023; }
+@keyframes light-on {
+  0% { opacity: 0; }
+  8% { opacity: .55; } 12% { opacity: .1; }
+  20% { opacity: .7; } 24% { opacity: .3; }
+  100% { opacity: 1; }
+}
+
+/* Lámpara colgante */
+.hang-rail { position: absolute; top: 0; left: 0; right: 0; height: 0; z-index: 5; pointer-events: none; }
+.hang-rail .wrap { position: relative; }
+.pendant {
+  --h: 212px;
+  position: absolute; top: 0; right: calc(var(--gutter) + 46px); transform: translateX(50%);
+  height: var(--h); padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+.pendant:focus-visible { outline-offset: 6px; }
+.pendant-swing { display: block; position: relative; z-index: 1; height: 100%; transform-origin: 50% 0; animation: sway 3.2s ease-in-out .6s 1; }
+.pendant:hover .pendant-swing { animation: sway 2.4s ease-in-out infinite; }
+.pendant img { height: 100%; width: auto; display: block; filter: saturate(.8) brightness(.96); transition: filter .5s ease; }
+.pendant-glow {
+  position: absolute; left: 50%; top: calc(100% - 4px); width: 460px; height: 420px; transform: translateX(-50%); z-index: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%); mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+  background: radial-gradient(ellipse 34% 58% at 50% 0%, rgba(243,198,107,.5), rgba(243,198,107,.16) 45%, rgba(243,198,107,0) 72%);
+  opacity: 0; pointer-events: none; transition: opacity .6s ease;
+}
+:host-context([data-theme="night"]) .pendant img { filter: saturate(1.15) brightness(1.12) drop-shadow(0 6px 22px rgba(243,180,70,.55)); }
+:host-context([data-theme="night"]) .pendant-glow { opacity: 1; }
+@keyframes sway { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(2.2deg); } 75% { transform: rotate(-2.2deg); } }
+
+/* Texto */
+.hero-copy h1 {
+  font-variation-settings: "wdth" 112; font-weight: 650;
+  font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.02; letter-spacing: -0.01em;
+  max-width: 17ch; margin-bottom: 1.6rem;
+}
+.hero-copy .lede { font-size: clamp(1.05rem, 1.3vw, 1.2rem); color: var(--ink-2); max-width: 54ch; margin-bottom: 1rem; }
+.hero-copy p + p { color: var(--ink-2); max-width: 54ch; }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .lamp { max-width: 260px; justify-self: start; }
+  .pendant { --h: 140px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lamp::after { animation: none; opacity: 1; }
+  .pendant-swing, .pendant:hover .pendant-swing { animation: none; }
+}

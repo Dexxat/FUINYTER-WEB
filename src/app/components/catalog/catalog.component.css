@@ -1,0 +1,71 @@
+/* Bloque Mercado Libre: siempre claro para que el logo se lea bien */
+.ml-band {
+  --ink: #1D2023; --ink-2: #4A4F55; --ink-3: #767B80; --line: rgba(29, 32, 35, .14);
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1.5rem 2.5rem;
+  margin-bottom: 1rem; padding: 1.75rem 2rem; border-radius: var(--r-md);
+  background: #fff; color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line), inset 0 3px 0 var(--lumen);
+}
+.ml-brand { display: flex; align-items: center; min-height: 56px; padding-right: 2.5rem; border-right: 1px solid var(--line); }
+.ml-logo { height: 66px; width: auto; }
+.ml-copy h3 { font-variation-settings: "wdth" 110; font-weight: 650; font-size: 1.3rem; line-height: 1.2; margin-bottom: .35rem; }
+.ml-copy .ml-user { font-size: .85rem; color: var(--ink-3); margin-bottom: .35rem; }
+.ml-copy p { color: var(--ink-2); font-size: .95rem; max-width: 62ch; }
+.ml-all { display: inline-block; margin-top: .5rem; font-size: .9rem; font-weight: 600; color: var(--ink); text-underline-offset: 3px; }
+.ml-band .btn-ink { background: #1D2023; color: #F4F2EE; border-color: #1D2023; }
+.ml-band .btn-ink:hover { background: #4A4F55; border-color: #4A4F55; }
+:host-context([data-theme="night"]) .ml-band .btn-ink { background: #3A3E43; border-color: #6B7076; color: #fff; }
+:host-context([data-theme="night"]) .ml-band .btn-ink:hover { background: #4A4F55; }
+
+/* Grilla de familias */
+.catalog-grid { display: grid; gap: 1rem; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.tile {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  border-radius: var(--r-md); overflow: hidden; text-decoration: none;
+  --ink: #1D2023; color: var(--ink);
+  background: var(--paper-2); min-height: 320px; isolation: isolate;
+}
+.tile-media { position: absolute; inset: 0; z-index: -1; background: var(--paper-3); }
+.tile-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.tile-media.contain { background: #fff; }
+.tile-media.contain img { object-fit: contain; object-position: center top; padding: 1.25rem 2rem 6.5rem; }
+.tile:hover .tile-media img { transform: scale(1.035); }
+.tile-body { padding: 1.4rem 1.5rem 1.5rem; background: linear-gradient(to top, rgba(232,230,225,.97) 55%, rgba(232,230,225,0)); }
+.tile-dark { color: #E8E6E1; }
+.tile-dark .tile-body { background: linear-gradient(to top, rgba(29,32,35,.92) 50%, rgba(29,32,35,0)); }
+.tile h3 { font-variation-settings: "wdth" 110; font-weight: 650; font-size: 1.35rem; line-height: 1.15; margin-bottom: .3rem; }
+.tile p { font-size: .92rem; opacity: .78; }
+.tile .go { display: inline-flex; align-items: center; gap: .4rem; margin-top: .9rem; font-weight: 600; font-size: .9rem; }
+.tile .go svg { width: 16px; height: 16px; transition: transform .25s var(--ease); }
+.tile:hover .go svg { transform: translate(2px, -2px); }
+
+.t-exterior { grid-column: span 5; grid-row: span 2; min-height: 560px; }
+.t-colgantes { grid-column: span 7; min-height: 300px; }
+.t-apliques { grid-column: span 4; }
+.t-tortugas { grid-column: span 3; }
+.t-tortugas .tile-media img { object-position: 45% 50%; }
+
+.swatches { display: flex; gap: .35rem; margin-top: .75rem; }
+.swatches span { width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+
+/* Descarga del PDF */
+.catalog-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem;
+  margin-top: 1.5rem; padding: 1.4rem 1.75rem; border: 2px solid var(--ink); border-radius: var(--r-md);
+}
+.catalog-foot p { color: var(--ink); font-weight: 600; font-size: 1.1rem; }
+
+@media (max-width: 1024px) {
+  .t-exterior { grid-column: span 12; grid-row: auto; min-height: 460px; }
+  .t-colgantes { grid-column: span 12; }
+  .t-apliques { grid-column: span 7; }
+  .t-tortugas { grid-column: span 5; }
+}
+@media (max-width: 860px) {
+  .ml-band { grid-template-columns: 1fr; padding: 1.5rem; }
+  .ml-brand { border-right: 0; padding-right: 0; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); min-height: 0; }
+  .ml-cta { justify-self: start; }
+}
+@media (max-width: 560px) {
+  .t-apliques, .t-tortugas { grid-column: span 12; }
+}

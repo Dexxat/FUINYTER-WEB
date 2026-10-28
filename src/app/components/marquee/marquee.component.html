@@ -1,0 +1,11 @@
+<div class="lines-strip" [attr.aria-label]="label()">
+  <div class="lines-track" aria-hidden="true">
+    @for (copy of [0, 1]; track copy) {
+      <div class="lines-group">
+        @for (item of items(); track $index) {
+          <span [class.hours]="item.strong">{{ item.text }}</span><i></i>
+        }
+      </div>
+    }
+  </div>
+</div>

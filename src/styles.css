@@ -1,0 +1,114 @@
+/* ------------------------------------------------------------
+   Tokens de diseño
+   Paleta tomada de los productos: hormigón de pared, grafito de
+   los faroles y los cinco colores reales de los colgantes.
+------------------------------------------------------------ */
+:root {
+  --paper: #E8E6E1;
+  --paper-2: #DCD9D2;
+  --paper-3: #CFCBC2;
+  --ink: #1D2023;
+  --ink-2: #4A4F55;
+  --ink-3: #767B80;
+  --line: rgba(29, 32, 35, 0.14);
+  --sage: #7D9A80;
+  --teal: #4F7F82;
+  --sand: #B7A277;
+  --umber: #6A4F35;
+  --graphite: #2B2E31;
+  --lumen: #F3C66B;
+  --lumen-soft: #FBE7B8;
+  --wa: #1E9E53;
+  --dealers-bg: #1D2023;
+
+  --font: 'Archivo', system-ui, sans-serif;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 1280px;
+  --r-sm: 4px;
+  --r-md: 10px;
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+/* Modo noche (lo activa la lámpara colgante del hero) */
+html[data-theme="night"] {
+  --paper: #141619;
+  --paper-2: #1B1E21;
+  --paper-3: #24272B;
+  --ink: #ECEAE5;
+  --ink-2: #B9BDC1;
+  --ink-3: #8C9196;
+  --line: rgba(236, 234, 229, 0.13);
+  --graphite: #2E3236;
+  --dealers-bg: #0D0F11;
+}
+html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
+  transition: background-color .6s ease, color .6s ease, border-color .6s ease, fill .6s ease !important;
+}
+
+/* ------------------------------------------------------------
+   Base
+------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  font-variation-settings: "wdth" 100;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ------------------------------------------------------------
+   Botones
+------------------------------------------------------------ */
+.btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font: inherit; font-weight: 600; font-size: .95rem; line-height: 1;
+  padding: .85rem 1.25rem; border-radius: var(--r-sm); border: 1px solid transparent;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .2s var(--ease), color .2s, border-color .2s;
+}
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-ink:hover { background: var(--graphite); }
+html[data-theme="night"] .btn-ink:hover { background: #fff; }
+.btn-line { border-color: var(--ink); color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+.btn-lumen { background: var(--lumen); color: #1D2023; }
+.btn-lumen:hover { background: var(--lumen-soft); }
+
+/* Redes (header y footer) */
+.social { display: flex; align-items: center; gap: .25rem; }
+.social a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; color: var(--ink-2); transition: color .2s, background-color .2s; }
+.social a:hover { color: var(--ink); background: var(--paper-2); }
+.social svg { width: 21px; height: 21px; }
+
+/* ------------------------------------------------------------
+   Secciones
+------------------------------------------------------------ */
+.section { padding: clamp(4rem, 9vw, 7.5rem) 0; }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.section-head h2 {
+  font-variation-settings: "wdth" 112; font-weight: 650;
+  font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.05; letter-spacing: -0.02em;
+  margin-bottom: .9rem;
+}
+.section-head p { color: var(--ink-2); max-width: 58ch; }
+
+@media (max-width: 860px) {
+  .section-head { grid-template-columns: 1fr; }
+  .social a { width: 36px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

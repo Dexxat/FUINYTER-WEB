@@ -1,0 +1,32 @@
+<section class="hero" id="nosotros" aria-labelledby="hero-title">
+  <!-- Lámpara colgante: interruptor del modo noche -->
+  <div class="hang-rail">
+    <div class="wrap">
+      <button class="pendant" type="button" (click)="toggleTheme()"
+              [attr.aria-pressed]="night()" [attr.aria-label]="night() ? 'Volver al modo día' : 'Activar modo noche'">
+        <span class="pendant-swing">
+          <img src="assets/img/lampara-colgante.webp" alt="" width="486" height="1050">
+        </span>
+        <span class="pendant-glow" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div class="lamp" aria-hidden="true">
+      <div class="lamp-mark"><svg viewBox="0 0 64 64"><use href="#mark" /></svg></div>
+    </div>
+
+    <div class="hero-copy">
+      <h1 id="hero-title">ILUMINAMOS TU HOGAR Y TUS PROYECTOS DESDE 1995.</h1>
+      <p class="lede">
+        Empezamos inyectando piezas para la industria automotriz. Hoy fabricamos en Carapachay artefactos de iluminación
+        para exterior e interior en termoplásticos de ingeniería, con siete inyectoras propias de hasta 300 toneladas de cierre.
+      </p>
+      <p>
+        Desde 1995 también importamos y distribuimos en exclusiva para Argentina los artefactos de NIBA (Bologna, Italia).
+        Y seguimos ofreciendo servicio de inyección de termoplásticos para todo tipo de industrias.
+      </p>
+    </div>
+  </div>
+</section>

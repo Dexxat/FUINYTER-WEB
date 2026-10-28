@@ -1,0 +1,29 @@
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="Fuinyter, inicio">
+      <svg viewBox="0 0 64 64"><use href="#mark" /></svg>
+      <span>
+        <span class="brand-name">FUINYTER</span>
+        <span class="brand-sub">Termoplásticos desde 1970</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Principal" [class.open]="menuOpen()">
+      @for (link of links; track link.id) {
+        <a [href]="'#' + link.id" [attr.aria-current]="active() === link.id" (click)="closeMenu()">{{ link.label }}</a>
+      }
+    </nav>
+
+    <div class="header-end">
+      <div class="social">
+        <a [href]="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#ig" /></svg></a>
+        <a [href]="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#wa" /></svg></a>
+      </div>
+      <button class="menu-toggle" type="button" aria-controls="nav"
+              [attr.aria-expanded]="menuOpen()" [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+              (click)="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

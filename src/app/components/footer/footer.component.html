@@ -1,0 +1,37 @@
+<footer class="footer" id="contacto">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Planta y oficinas</h4>
+        <address>Montes de Oca 6493/87<br>B1606BMA Carapachay<br>Vicente López, Buenos Aires</address>
+      </div>
+      <div>
+        <h4>Escribinos</h4>
+        <ul>
+          <li><a [href]="'mailto:' + site.email">{{ site.email }}</a></li>
+          @for (phone of site.phones; track phone) {
+            <li><a [href]="tel(phone)">{{ phone }}</a></li>
+          }
+        </ul>
+      </div>
+      <div>
+        <h4>Representante en Brasil</h4>
+        <address>
+          MetallTrade Ltda.<br>Rua Jamil Farah 185, Belo Horizonte MG<br>
+          <a href="tel:+553133742797">+55 31 3374-2797</a><br>
+          <a href="https://www.metalltrade.com.br" target="_blank" rel="noopener">metalltrade.com.br</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="wordmark" aria-hidden="true">FUINYTER</div>
+
+    <div class="footer-bottom">
+      <span>© {{ year }} Fuinyter S.A. Industria argentina.</span>
+      <div class="social">
+        <a [href]="site.instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#ig" /></svg></a>
+        <a [href]="whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#wa" /></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>

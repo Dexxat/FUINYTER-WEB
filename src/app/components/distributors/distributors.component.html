@@ -1,0 +1,71 @@
+<section class="section dealers" id="distribuidores" aria-labelledby="dist-title">
+  <div class="wrap">
+    <!-- Farol de pared decorativo -->
+    <div class="sconce" aria-hidden="true">
+      <span class="sconce-glow"></span>
+      <img src="assets/img/farol-pared.webp" alt="" width="446" height="560">
+    </div>
+
+    <div class="section-head">
+      <div>
+        <h2 id="dist-title">Dónde comprar</h2>
+        <p>Casas de iluminación y electricidad que venden productos Fuinyter en todo el país. Elegí tu zona.</p>
+      </div>
+    </div>
+
+    <div class="dealers-layout">
+      <div class="zones" role="tablist" aria-label="Zonas" #zoneList (keydown)="onKey($event, zoneList)">
+        @for (z of zones; track z.id) {
+          <button role="tab" type="button" [attr.data-zone]="z.id"
+                  [attr.aria-selected]="selected() === z.id" [attr.tabindex]="selected() === z.id ? 0 : -1"
+                  (click)="select(z.id)">
+            <span>{{ z.label }}</span><span class="count">{{ count(z.id) }}</span>
+          </button>
+        }
+      </div>
+
+      <div>
+        <ul class="dealer-list" role="tabpanel" aria-live="polite">
+          @for (d of visible(); track d.name) {
+            <li class="dealer">
+              <div>
+                <h3>{{ d.name }}</h3>
+                <div class="kind">{{ d.city }}</div>
+              </div>
+              <div>
+                <address>
+                  @for (line of d.lines; track $index) { <span class="line">{{ line }}</span> }
+                </address>
+                @if (d.hours) { <p class="hours">{{ d.hours }}</p> }
+              </div>
+              <div class="dealer-actions">
+                @if (d.whatsapp) {
+                  <a class="btn btn-wa" [href]="wa(d)" target="_blank" rel="noopener"><svg><use href="#wa" /></svg>WhatsApp</a>
+                } @else {
+                  <a class="btn btn-wa" [href]="tel(d)">Llamar</a>
+                }
+                <div class="dealer-links">
+                  <a [href]="'https://' + d.web" target="_blank" rel="noopener">Sitio web</a>
+                  <a [href]="'mailto:' + d.email">Email</a>
+                </div>
+              </div>
+            </li>
+          } @empty {
+            <li class="empty">
+              Todavía no tenemos distribuidores publicados en {{ selectedLabel() }}.
+              <a [href]="helpLink" target="_blank" rel="noopener">Escribinos</a> y te derivamos al punto de venta más cercano.
+            </li>
+          }
+        </ul>
+
+        <div class="join">
+          <div>
+            <h3>¿Tenés un comercio de electricidad o iluminación?</h3>
+            <p>Sumate a la red oficial y comprá con precio directo de fábrica.</p>
+          </div>
+          <a class="btn btn-lumen" [href]="joinLink" target="_blank" rel="noopener">Quiero ser distribuidor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

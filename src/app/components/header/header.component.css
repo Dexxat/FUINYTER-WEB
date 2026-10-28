@@ -1,0 +1,44 @@
+:host { display: block; position: sticky; top: 0; z-index: 50; }
+
+.site-header {
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.2) blur(10px);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1.5rem; }
+.header-end { display: flex; gap: .5rem; align-items: center; }
+
+.brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+.brand svg { width: 34px; height: 34px; flex-shrink: 0; }
+.brand-name { font-variation-settings: "wdth" 125; font-weight: 700; font-size: 1.05rem; letter-spacing: .04em; line-height: 1; }
+.brand-sub { display: block; font-size: .72rem; font-weight: 400; color: var(--ink-3); letter-spacing: .02em; margin-top: .2rem; }
+
+.nav { display: flex; align-items: center; gap: .25rem; }
+.nav a {
+  text-decoration: none; font-size: .95rem; font-weight: 500;
+  padding: .5rem 1rem; border-radius: 999px; color: var(--ink-2);
+  transition: color .2s, background-color .2s;
+}
+.nav a:hover { color: var(--ink); background: var(--paper-2); }
+.nav a[aria-current="true"] { color: var(--ink); }
+
+.menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: var(--r-sm); width: 42px; height: 42px; cursor: pointer; }
+.menu-toggle span { display: block; width: 18px; height: 1.5px; background: var(--ink); margin: 4px auto; transition: transform .25s var(--ease), opacity .2s; }
+
+@media (max-width: 860px) {
+  .menu-toggle { display: block; }
+  .nav {
+    position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+    padding: .75rem var(--gutter) 1.25rem; background: var(--paper); border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: .85rem .5rem; font-size: 1.05rem; }
+  :host(.menu-open) .menu-toggle span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  :host(.menu-open) .menu-toggle span:nth-child(2) { opacity: 0; }
+  :host(.menu-open) .menu-toggle span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+}
+@media (max-width: 560px) {
+  .brand-sub { display: none; }
+}
