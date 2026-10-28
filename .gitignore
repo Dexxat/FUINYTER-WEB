@@ -9,3 +9,7 @@
 .vscode/*
 !.vscode/extensions.json
 *.log
+
+# Pruebas e2e
+/test-results
+/playwright-report
